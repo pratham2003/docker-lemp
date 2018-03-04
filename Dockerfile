@@ -4,7 +4,7 @@ ENV DEBIAN_FRONTEND noninteractive
 
 ## Install php nginx mysql supervisor
 RUN apt update && \
-    apt install -y php7.1-fpm php7.1-mysql php7.1-gd php7.1-mcrypt php7.1-mysql php7.1-curl \
+    apt install -y php7.0-fpm php7.0-mysql php7.0-gd php7.0-mcrypt php7.0-mysql php7.0-curl \
                        nginx \
                        curl \
 		       supervisor && \
@@ -14,9 +14,9 @@ RUN apt update && \
     rm -rf /var/lib/apt/lists/*
 
 ## Configuration
-RUN sed -i 's/^listen\s*=.*$/listen = 127.0.0.1:9000/' /etc/php/7.1/fpm/pool.d/www.conf && \
-    sed -i 's/^\;error_log\s*=\s*syslog\s*$/error_log = \/var\/log\/php\/cgi.log/' /etc/php/7.1/fpm/php.ini && \
-    sed -i 's/^\;error_log\s*=\s*syslog\s*$/error_log = \/var\/log\/php\/cli.log/' /etc/php/7.1/cli/php.ini && \
+RUN sed -i 's/^listen\s*=.*$/listen = 127.0.0.1:9000/' /etc/php/7.0/fpm/pool.d/www.conf && \
+    sed -i 's/^\;error_log\s*=\s*syslog\s*$/error_log = \/var\/log\/php\/cgi.log/' /etc/php/7.0/fpm/php.ini && \
+    sed -i 's/^\;error_log\s*=\s*syslog\s*$/error_log = \/var\/log\/php\/cli.log/' /etc/php/7.0/cli/php.ini && \
     sed -i 's/^key_buffer\s*=/key_buffer_size =/' /etc/mysql/my.cnf
 
 COPY files/root /
